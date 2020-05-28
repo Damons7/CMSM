@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验2</title>
+    <style>
+        .test3{
+            background-color: #EFEFEF;
+            height: 310px;
+            width: 200px;
+        }
+        .title{
+
+        }
+        input{
+            margin-top: 18px;
+            margin-left: 10px;
+            height: 22px;
+            width: 160px;
+            border:1px solid #B8B8B8;
+        }
+        button{
+            background-image:linear-gradient(to right,#E2E2E2,#F4F4F4);
+            border:1px solid #B8B8B8;
+            width: 36px;
+            height: 25px;
+            color:   #444444;
+        }
+        .divFromButton{
+            margin: 15px;
+        }
+    </style>
+    <script>
+        function one() {
+
+            if(confirm('您来过吉林大学珠海学院吗？')==false) {
+                alert("欢迎您有机会来吉珠参观！");
+                return false;
+            } else{
+                alert("您也认为吉珠很美吧！");
+            }
+        }
+
+        function two() {
+            var b=0;
+            var  timeA=Date.now();
+            for (var a=0;a<1000000;a++){
+                b++;
+            }
+            var timeB=Date.now();
+            alert("做1,000,000次加操作所耗费的时间"+(timeB-timeA)+"毫秒");
+        }
+        window.onload=function () {
+            one();
+            two();
+            calculation();
+        }
+        //3.计算器
+        calculation=function () {
+            var allbutton= document.querySelectorAll('button');
+            var regNumber=/^[0-9]\d*$/;
+            var calcu="";
+            for (var i=0;i<allbutton.length;i++){
+                var text=document.querySelector("#text");
+                var numbers='';
+                var flag=true;
+                var flag2=true;
+
+                allbutton[i].addEventListener('click',function (e) {
+                    var a = this.innerHTML;
+                    if (regNumber.test(a)) {
+                        numbers = numbers+'' + a + '';
+
+                    }else if(flag){
+                        flag=false;
+                        switch (a){
+                            case "+":
+                                numbers=numbers+"+";calcu="+";break;
+                            case "-":
+                                numbers=numbers+"-";calcu="-";break;
+                            case "*":
+                                numbers=numbers+"*";calcu="*";break;
+                            case "/":
+                                numbers=numbers+"/";calcu="/";break;
+                            case "pi":
+                                numbers=Math.PI;flag=true;break;
+                            case "e":
+                                numbers=Math.E;flag=true;break;
+                            case "1/x":
+                                numbers=1/parseFloat(numbers);flag=true;break;
+                            case "sqrt":
+                                numbers=Math.sqrt(parseFloat(numbers));flag=true;break;
+                            case "sin":
+                                numbers=Math.sin(parseFloat(numbers));flag=true;break;
+                            case "cos":
+                                numbers=Math.cos(parseFloat(numbers));flag=true;break;
+                            case "tan":
+                                numbers=Math.tan(parseFloat(numbers));flag=true;break;
+                            case "asin":
+                                numbers=Math.asin(parseFloat(numbers));flag=true;break;
+                        }
+                    }
+                    text.value=numbers;
+
+
+                    if(a=="="){
+                        var out=0;
+                        var arr=numbers.split(calcu);
+                        switch (calcu){
+                            case "+":
+                                out=parseFloat(arr[0])+parseFloat(arr[1]);text.value=out;break;
+                            case "-":
+                                out=parseFloat(arr[0])-parseFloat(arr[1]);text.value=out;break;
+                            case "*":
+                                out=parseFloat(arr[0])*parseFloat(arr[1]);text.value=out;break;
+                            case "/":
+                                out=parseFloat(arr[0])/parseFloat(arr[1]);text.value=out;break;
+                        }
+                        flag=true;
+                        numbers='';
+
+                    }
+
+                    if(a=="C"){
+                        text.value="";
+                        numbers="";
+                        flag=true;
+                        calcu="";
+                    }
+
+                })
+
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <h2>1、见弹框</h2>
+    <h2>2、见弹框</h2>
+    <h2>3、计算器</h2>
+    <div class="test3">
+        <div class="title">
+            <input id="text" name="de"/>
+        </div>
+        <div class="divFromButton">
+            <button class="sss">+</button>
+            <button>-</button>
+            <button>*</button>
+            <button>/</button>
+        </div>
+        <div class="divFromButton number">
+
+            <button class="sss">1</button>
+            <button class="sss">2</button>
+            <button class="sss">3</button>
+            <button class="sss">4</button>
+
+        </div>
+        <div class="divFromButton">
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+        </div>
+        <div class="divFromButton">
+            <button>9</button>
+            <button>0</button>
+            <button class="sss">=</button>
+            <button>C</button>
+        </div>
+        <div class="divFromButton">
+            <button>pi</button>
+            <button>e</button>
+            <button>sqrt</button>
+            <button>1/x</button>
+        </div>
+        <div class="divFromButton">
+            <button>sin</button>
+            <button>cos</button>
+            <button>tan</button>
+            <button>asin</button>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

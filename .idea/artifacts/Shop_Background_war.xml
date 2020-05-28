@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Shop_Background:war">
+    <output-path>$PROJECT_DIR$/../Shop_Background/out/artifacts/Shop_Background_war</output-path>
+    <root id="archive" name="Shop_Background_war.war">
+      <element id="artifact" artifact-name="Shop_Background:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="commons-fileupload-1.4" />
+          <element id="library" level="project" name="commons-lang-2.3" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
